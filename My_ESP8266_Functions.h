@@ -18,16 +18,18 @@
 
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
-
+#include <ArduinoOTA.h>
 class MyWiFi
 {
 	public:
+        ArduinoOTAClass myOTA;
 		//when instantiating class object, pass a unique 
 		//device name and last three digits of static IP
 		MyWiFi(String deviceName,int lastThreeIP);
 		void connectWiFi();
 		void myTweet(String tweet);
-	
+        void myOTAsetup();
+        void myOTAhandle();
 	private:
 		//////////////////////
 		// WiFi Definitions //

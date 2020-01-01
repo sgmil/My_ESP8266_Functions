@@ -9,13 +9,14 @@
 #include "My_ESP8266_Functions.h"
 #include <WiFiClient.h>
 #include <ESP8266HTTPClient.h>
+#include <ArduinoOTA.h>
 
 MyWiFi::MyWiFi(String deviceName, int lastThreeIP)
 {
     _deviceName = deviceName;
     _lastThreeIP = lastThreeIP;
     pinMode(LED_PIN, OUTPUT); 
-     
+     ArduinoOTAClass myOTA;
 }
 void MyWiFi::connectWiFi()
 {	
@@ -74,4 +75,32 @@ void MyWiFi::myTweet(String tweet)	//no spaces in string, must use "+" (eg tweet
 		Serial.print("We tweeted:  ");
 		Serial.println(tweet);
 	}
+}
+void MyWiFi::myOTAsetup() {
+    
+  myOTA.setHostname("ESP8266");
+  myOTA.setPassword("");
+
+  myOTA.onStart([]() {
+    Serial.println("Start");
+  });
+  myOTA.onEnd([]() {
+    Serial.println("\nEnd");
+  });
+  myOTA.onProgress([](unsigned int progress, unsigned int total) {
+    Serial.printf("Progress: %u%%\r", (progress / (total / 100)));
+  });
+  myOTA.onError([](ota_error_t error) {
+    Serial.printf("Error[%u]: ", error);
+    if (error == OTA_AUTH_ERROR) Serial.println("Auth Failed");
+    else if (error == OTA_BEGIN_ERROR) Serial.println("Begin Failed");
+    else if (error == OTA_CONNECT_ERROR) Serial.println("Connect Failed");
+    else if (error == OTA_RECEIVE_ERROR) Serial.println("Receive Failed");
+    else if (error == OTA_END_ERROR) Serial.println("End Failed");
+  });
+  myOTA.begin();
+  Serial.println("OTA ready");
+}
+void MyWiFi::myOTAhandle() {
+   myOTA.handle();
 }
