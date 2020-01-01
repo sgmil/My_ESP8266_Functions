@@ -13,7 +13,7 @@
 
 MyWiFi::MyWiFi(String deviceName, int lastThreeIP)
 {
-    _deviceName = deviceName;
+    //_deviceName = devicename;
     _lastThreeIP = lastThreeIP;
     pinMode(LED_PIN, OUTPUT); 
      ArduinoOTAClass myOTA;

@@ -5,6 +5,7 @@
 	1. 	connect ESP8266 to riverrun 
   		wifi with static IP address, as wifi STAtion. 
 	2. 	tweet string through ThingTweet
+    3.  can add OTA programming to sketch
 	Created By Stephen Milheim, December 14, 2019
 */
 
@@ -38,7 +39,7 @@ class MyWiFi
 		const char* const _WiFiPSK = "";
 		//ThingTweet API KEY
 		const String _API_KEY = "SWSPZGZN1CBMD2E3";
-		String _deviceName;
+		String _deviceName = "ESP8266";
 		int _lastThreeIP;
 		
 };
