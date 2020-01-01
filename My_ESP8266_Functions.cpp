@@ -6,7 +6,7 @@
  */
  
 #include <Arduino.h>
-#include "ESP8266_Functions.h"
+#include "My_ESP8266_Functions.h"
 #include <WiFiClient.h>
 #include <ESP8266HTTPClient.h>
 
@@ -19,7 +19,7 @@ MyWiFi::MyWiFi(String deviceName, int lastThreeIP)
 }
 void MyWiFi::connectWiFi()
 {	
-	Serial.begin(9600);
+	Serial.begin(115200);
 	byte ledStatus = LOW;	
 	Serial.println();
 	Serial.println("Connecting to: " + String(_WiFiSSID));
