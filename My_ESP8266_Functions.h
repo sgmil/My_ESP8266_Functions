@@ -20,13 +20,18 @@
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
 #include <ArduinoOTA.h>
+#include <string>
+#include <bits/stdc++.h>
+using namespace std;
+
 class MyWiFi
 {
 	public:
         ArduinoOTAClass myOTA;
+        ESP8266WiFiClass wf;
 		//when instantiating class object, pass a unique 
 		//device name and last three digits of static IP
-		MyWiFi(String deviceName,int lastThreeIP);
+		MyWiFi(String deviceName,string IPaddress);
 		void connectWiFi();
 		void myTweet(String tweet);
         void myOTAsetup();
@@ -40,8 +45,9 @@ class MyWiFi
 		//ThingTweet API KEY
 		const String _API_KEY = "SWSPZGZN1CBMD2E3";
 		String _deviceName = "ESP8266";
-		int _lastThreeIP;
-		
+		string _IPaddress;
+        int * IPstringtodigits(string IPaddress);
+		void wifiRenew();
 };
 
 #endif

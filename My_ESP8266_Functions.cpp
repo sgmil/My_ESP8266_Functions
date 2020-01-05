@@ -10,13 +10,18 @@
 #include <WiFiClient.h>
 #include <ESP8266HTTPClient.h>
 #include <ArduinoOTA.h>
+#include <string>
+#include <bits/stdc++.h>
 
-MyWiFi::MyWiFi(String deviceName, int lastThreeIP)
+using namespace std;
+
+MyWiFi::MyWiFi(String deviceName, string IPaddress)
 {
     //_deviceName = devicename;
-    _lastThreeIP = lastThreeIP;
+    _IPaddress = IPaddress;
     pinMode(LED_PIN, OUTPUT); 
-     ArduinoOTAClass myOTA;
+    ArduinoOTAClass myOTA;
+    ESP8266WiFiClass wf;
 }
 void MyWiFi::connectWiFi()
 {	
@@ -24,21 +29,25 @@ void MyWiFi::connectWiFi()
 	byte ledStatus = LOW;	
 	Serial.println();
 	Serial.println("Connecting to: " + String(_WiFiSSID));
-	WiFi.hostname(_deviceName);
+	wf.hostname(_deviceName);
 	IPAddress gateway(192, 168, 0, 1);   //IP Address of your WiFi Router (Gateway)
 	IPAddress subnet(255, 255, 255, 0);  //Subnet mask
 	IPAddress dns(8, 8, 8, 8);  //DNS
-	IPAddress staticIP(192,168,0,_lastThreeIP); //ESP static ip 
-	WiFi.config(staticIP,gateway,subnet,dns);
+    int *IParray = MyWiFi::IPstringtodigits(_IPaddress);
+    for (int i=0;i<4;i++) {
+        Serial.println(IParray[i]);
+    }
+	IPAddress staticIP(IParray[0],IParray[1],IParray[2],IParray[3]); //ESP static ip 
+	wf.config(staticIP,gateway,subnet,dns);
 	// Set WiFi mode to station (as opposed to AP or AP_STA)
-	WiFi.mode(WIFI_STA);
+	wf.mode(WIFI_STA);
 	// WiFI.begin([ssid], [passkey]) initiates a WiFI connection
 	// to the stated [ssid], using the [passkey] as a WPA, WPA2,
 	// or WEP passphrase.
-	WiFi.begin(_WiFiSSID, _WiFiPSK);
+	wf.begin(_WiFiSSID, _WiFiPSK);
 	// Use the WiFi.status() function to check if the ESP8266
 	// is connected to a WiFi network.
-	while (WiFi.status() != WL_CONNECTED)
+	while (wf.status() != WL_CONNECTED)
 	{
 	// Blink the LED
 	digitalWrite(LED_PIN, ledStatus); // Write LED high/low
@@ -54,8 +63,15 @@ void MyWiFi::connectWiFi()
 	}
 	Serial.println("WiFi connected");  
 	Serial.println("IP address: ");
-	Serial.println(WiFi.localIP());
+	Serial.println(wf.localIP());
 	digitalWrite(LED_PIN, HIGH);
+}
+void MyWiFi::wifiRenew()
+{
+    if (wf.status() !=WL_CONNECTED)
+    {
+        ESP.restart();
+    }
 }
 void MyWiFi::myTweet(String tweet)	//no spaces in string, must use "+" (eg tweet="Hello+World!")
 {
@@ -103,4 +119,22 @@ void MyWiFi::myOTAsetup() {
 }
 void MyWiFi::myOTAhandle() {
    myOTA.handle();
+}
+int * MyWiFi::IPstringtodigits(string IPaddress) {
+    static int IPdigits[4];
+    for (int b=0;b<IPaddress.length();b++)
+    {
+        Serial.print(IPaddress[b]);
+    }
+    replace( IPaddress.begin(), IPaddress.end(),'.',' ' );
+    stringstream t(IPaddress);
+    Serial.print("We're converting string to digits ");
+    //Serial.println(IPaddress);
+    //Serial.println(t);
+    for (int c=0; c<4; c++)
+    {
+        t >> IPdigits[c];
+        Serial.println(IPdigits[c]);
+    }
+    return IPdigits;
 }
