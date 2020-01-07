@@ -31,7 +31,7 @@ class MyWiFi
         ESP8266WiFiClass wf;
 		//when instantiating class object, pass a unique 
 		//device name and last three digits of static IP
-		MyWiFi(String deviceName,string IPaddress);
+		MyWiFi(String deviceName,String IPaddress);
 		void connectWiFi();
 		void myTweet(String tweet);
         void myOTAsetup();

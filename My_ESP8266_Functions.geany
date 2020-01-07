@@ -28,9 +28,10 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=1
-FILE_NAME_0=24;C++;0;EUTF-8;1;1;0;C%3A%5CUsers%5Csgmil%5CDropbox%5CArduino%5Csketchbook%5Clibraries%5CESP8266_Functions%5CESP8266_Functions.cpp;0;4
-FILE_NAME_1=187;C++;0;EUTF-8;1;1;0;C%3A%5CUsers%5Csgmil%5CDropbox%5CArduino%5Csketchbook%5Clibraries%5CESP8266_Functions%5CESP8266_Functions.h;0;4
-FILE_NAME_2=57;None;0;EUTF-8;1;1;0;C%3A%5CUsers%5Csgmil%5CDropbox%5CArduino%5Csketchbook%5Clibraries%5CESP8266_Functions%5Ckeywords.txt;0;4
-FILE_NAME_3=144;Arduino;0;EUTF-8;1;1;0;C%3A%5CUsers%5Csgmil%5CDropbox%5CArduino%5Csketchbook%5CtestWiFi%5CtestWiFi.ino;0;4
-FILE_NAME_4=0;None;0;EUTF-8;1;1;0;C%3A%5CUsers%5Csgmil%5CDropbox%5CArduino%5Csketchbook%5Clibraries%5CESP8266_Functions%5CESP8266_Functions.geany;0;4
+current_page=2
+FILE_NAME_0=561;C++;0;EUTF-8;1;1;0;%2Fhome%2Fsgmil%2FSharedDocs%2FArduino%2Fsketchbook%2Flibraries%2FMy_ESP8266_Functions%2FMy_ESP8266_Functions.cpp;0;4
+FILE_NAME_1=812;C;0;EUTF-8;1;1;0;%2Fhome%2Fsgmil%2FSharedDocs%2FArduino%2Fsketchbook%2Flibraries%2FMy_ESP8266_Functions%2FMy_ESP8266_Functions.h;0;4
+FILE_NAME_2=197;Arduino;0;EUTF-8;1;1;0;%2Fhome%2Fsgmil%2FSharedDocs%2FArduino%2Fsketchbook%2FOTA_Testing%2FMyBlinkOTA%2FMyBlinkOTA.ino;0;4
+
+[VTE]
+last_dir=/home/sgmil/SharedDocs/Arduino/sketchbook/OTA_Testing/MyBlinkOTA

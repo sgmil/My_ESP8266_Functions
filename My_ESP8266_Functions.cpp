@@ -15,10 +15,10 @@
 
 using namespace std;
 
-MyWiFi::MyWiFi(String deviceName, string IPaddress)
+MyWiFi::MyWiFi(String deviceName, String IPaddress)
 {
     //_deviceName = devicename;
-    _IPaddress = IPaddress;
+    _IPaddress = IPaddress.c_str(); //to strip IP String need c++ string::
     pinMode(LED_PIN, OUTPUT); 
     ArduinoOTAClass myOTA;
     ESP8266WiFiClass wf;
