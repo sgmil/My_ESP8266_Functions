@@ -128,7 +128,7 @@ int * MyWiFi::IPstringtodigits(string IPaddress) {
     //}
     replace( IPaddress.begin(), IPaddress.end(),'.',' ' );
     stringstream t(IPaddress);
-    Serial.print("We're converting string to digits ");
+    //Serial.print("We're converting string to digits ");
     //Serial.println(IPaddress);
     //Serial.println(t);
     for (int c=0; c<4; c++)
