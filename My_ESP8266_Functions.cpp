@@ -34,9 +34,9 @@ void MyWiFi::connectWiFi()
 	IPAddress subnet(255, 255, 255, 0);  //Subnet mask
 	IPAddress dns(8, 8, 8, 8);  //DNS
     int *IParray = MyWiFi::IPstringtodigits(_IPaddress);
-    for (int i=0;i<4;i++) {
-        Serial.println(IParray[i]);
-    }
+    //for (int i=0;i<4;i++) {
+        //Serial.println(IParray[i]);
+    //}
 	IPAddress staticIP(IParray[0],IParray[1],IParray[2],IParray[3]); //ESP static ip 
 	wf.config(staticIP,gateway,subnet,dns);
 	// Set WiFi mode to station (as opposed to AP or AP_STA)
@@ -122,10 +122,10 @@ void MyWiFi::myOTAhandle() {
 }
 int * MyWiFi::IPstringtodigits(string IPaddress) {
     static int IPdigits[4];
-    for (int b=0;b<IPaddress.length();b++)
-    {
-        Serial.print(IPaddress[b]);
-    }
+    //for (int b=0;b<IPaddress.length();b++)
+    //{
+        //Serial.print(IPaddress[b]);
+    //}
     replace( IPaddress.begin(), IPaddress.end(),'.',' ' );
     stringstream t(IPaddress);
     Serial.print("We're converting string to digits ");
@@ -134,7 +134,7 @@ int * MyWiFi::IPstringtodigits(string IPaddress) {
     for (int c=0; c<4; c++)
     {
         t >> IPdigits[c];
-        Serial.println(IPdigits[c]);
+        //Serial.println(IPdigits[c]);
     }
     return IPdigits;
 }
